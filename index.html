@@ -25,11 +25,12 @@
     <h1 id="Wallet">Wallet:</h1>
     <input type="button" value="Connect Wallet" onclick="connectWalletLoading()">
     <input type="button" value="Get Wallet" onclick="getWallet()">
-    <input type="button" value="Disconnect Wallet" onclick="connectWalletReady('c0dc03ecae8b0bcb00000000668faa74584c7ee587ddfb3f9ba8e14ad836ecc7')">
-    
+    <input type="button" value="Disconnect Wallet"
+        onclick="connectWalletReady('c0dc03ecae8b0bcb00000000668faa74584c7ee587ddfb3f9ba8e14ad836ecc7')">
+
 </body>
 <script>
-    
+
     document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
 
     function getWalletConnected() {
@@ -38,7 +39,10 @@
     }
 
     async function connectWalletLoading() {
-        const universalLink = connector.setConnectRequestParameters({ state: "loading" });
+        connector.connect(
+            walletConnectionSource,
+            { tonProof: "c0dc03ecae8b0bcb00000000668faa74584c7ee587ddfb3f9ba8e14ad836ecc7" }
+        );
     }
 
     async function connectWalletReady(tonProof) {
