@@ -13,7 +13,7 @@
 <body style="overflow: scroll;">
     <div id="tittle"></div>
     <!-- style="position: absolute;opacity: 0;left: -99999px;right: -99999px;" -->
-    <div id="ton-connect" ></div>
+    <div id="ton-connect"></div>
     <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://kay1314.github.io//tonconnect-manifest.json',
@@ -27,7 +27,7 @@
 </body>
 <script>
     document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
-    
+
 
     function getWalletConnected() {
         console.log("getWalletConnected: ", tonConnectUI.connected);
@@ -35,12 +35,20 @@
     }
 
     async function connectWallet() {
-        if (!tonConnectUI.connected) {
-            let res = await tonConnectUI.connectWallet();
-            let resStr = JSON.stringify(res);
-            console.log("connectWallet: ", resStr);
-            return JSON.stringify(res);
+        const walletConnectionSource = {
+            universalLink: 'https://app.tonkeeper.com/ton-connect',
+            bridgeUrl: 'https://bridge.tonapi.io/bridge'
         }
+
+        const universalLink = connector.connect(walletConnectionSource);
+        // if (!tonConnectUI.connected) {
+        //     let res = await tonConnectUI.connect({
+
+        //     });
+        //     let resStr = JSON.stringify(res);
+        //     console.log("connectWallet: ", resStr);
+        //     return JSON.stringify(res);
+        // }
         return '';
     }
 
