@@ -5,10 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js" defer></script>
 </head>
 
 <body>
-    <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="lk5003Bot" data-size="large" data-auth-url="http://www.ai2what.com:59102/oauth/result" data-request-access="write"></script>
+    <div id="tittle"></div>
+    <div id="ton-connect" style="position: absolute;opacity: 0;left: -99999px;right: -99999px;"></div>
+    <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://kay1314.github.io//tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
+    </script>
+    <h1 id="Wallet">Wallet:</h1>
+    <input type="button" value="Connect Wallet" onclick="connectWallet()">
+    <input type="button" value="Get Wallet" onclick="getWallet()">
+    <input type="button" value="Disconnect Wallet" onclick="disConnectWallet()">
 </body>
+<script>
+    document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
+    
+
+    function getWalletConnected() {
+        console.log("getWalletConnected: ", tonConnectUI.connected);
+        return tonConnectUI.connected;
+    }
+
+    async function connectWallet() {
+        if (!tonConnectUI.connected) {
+            let res = await tonConnectUI.connectWallet();
+            let resStr = JSON.stringify(res);
+            console.log("connectWallet: ", resStr);
+            return JSON.stringify(res);
+        }
+        return '';
+    }
+
+    async function disConnectWallet() {
+        await tonConnectUI.disconnect();
+    }
+
+    async function getWallet() {
+        if (tonConnectUI.connected) {
+            let wallet = tonConnectUI.account.address;
+            console.log("wallet: ", wallet);
+            document.getElementById('Wallet').innerHTML = `<h1>Wallet: ${tonConnectUI.wallet.address}</h1>`;
+            return wallet;
+        }
+        return '';
+    }
+
+    async function sendTransaction(address, amount) {
+        console.log("sendTransaction: ", address, amount);
+        if (tonConnectUI.connected) {
+            return '';
+        }
+        const transaction = {
+            validUntil: Math.floor(new Date() / 1000) + 360,
+            messages: [
+                {
+                    address: address,
+                    amount: amount
+                }
+            ]
+        }
+        let res = await tonConnectUI.sendTransaction(transaction);
+        console.log("sendTransaction: ", JSON.stringify(res));
+        return JSON.stringify(res);
+    }
+</script>
 
 </html>
