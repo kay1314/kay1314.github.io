@@ -23,6 +23,7 @@
             manifestUrl: 'https://myApp.com/assets/tonconnect-manifest.json'
         });
         console.log("connector: ", connector);
+        connector.restoreConnection();
     </script>
     <h1 id="Wallet">Wallet:</h1>
     <input type="button" value="Connect Wallet" onclick="connectWalletLoading()">
