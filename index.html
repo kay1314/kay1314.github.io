@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js" defer></script>
 </head>
 
-<body>
+<body style="overflow: scroll;">
     <div id="tittle"></div>
     <!-- style="position: absolute;opacity: 0;left: -99999px;right: -99999px;" -->
     <div id="ton-connect" ></div>
@@ -52,7 +52,7 @@
         if (tonConnectUI.connected) {
             let wallet = tonConnectUI.account.address;
             console.log("wallet: ", wallet);
-            document.getElementById('Wallet').innerHTML = `<h1>Wallet: ${tonConnectUI}</h1>`;
+            document.getElementById('Wallet').innerHTML = `<h1>Wallet: ${JSON.stringify(tonConnectUI)}</h1>`;
             return wallet;
         }
         return '';
