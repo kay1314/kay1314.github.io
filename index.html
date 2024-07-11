@@ -27,6 +27,7 @@
     
 </body>
 <script>
+    const connector = new TonConnectSDK.TonConnect();
     document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
 
     function getWalletConnected() {
@@ -35,11 +36,11 @@
     }
 
     async function connectWalletLoading() {
-        const universalLink = tonConnectUI.setConnectRequestParameters({ state: "loading" });
+        const universalLink = connector.setConnectRequestParameters({ state: "loading" });
     }
 
     async function connectWalletReady(tonProof) {
-        const universalLink = tonConnectUI.setConnectRequestParameters({
+        const universalLink = connector.setConnectRequestParameters({
             state: "ready", value: {
                 tonProof: tonProof
             }
