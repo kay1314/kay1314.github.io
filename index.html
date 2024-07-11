@@ -24,6 +24,11 @@
         });
         console.log("connector: ", connector);
         connector.restoreConnection();
+        const unsubscribe = connector.onStatusChange(
+            walletInfo => {
+                // update state/reactive variables to show updates in the ui
+            }
+        );
     </script>
     <h1 id="Wallet">Wallet:</h1>
     <input type="button" value="Connect Wallet" onclick="connectWalletLoading()">
