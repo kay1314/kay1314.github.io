@@ -7,7 +7,7 @@
     <title>Telegram</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js" defer></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
 </head>
 
 <body style="overflow: scroll;">
@@ -19,6 +19,7 @@
             manifestUrl: 'https://kay1314.github.io//tonconnect-manifest.json',
             buttonRootId: 'ton-connect'
         });
+        const connector = new TonConnectSDK.TonConnect();
     </script>
     <h1 id="Wallet">Wallet:</h1>
     <input type="button" value="Connect Wallet" onclick="connectWalletLoading()">
@@ -27,7 +28,7 @@
     
 </body>
 <script>
-    const connector = new TonConnectSDK.TonConnect();
+    
     document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
 
     function getWalletConnected() {
