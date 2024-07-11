@@ -52,7 +52,7 @@
         if (tonConnectUI.connected) {
             let wallet = tonConnectUI.account.address;
             console.log("wallet: ", wallet);
-            document.getElementById('Wallet').innerHTML = `<h1>Wallet: ${JSON.stringify(tonConnectUI)}</h1>`;
+            console.log("getWallet: ", tonConnectUI);
             return wallet;
         }
         return '';
