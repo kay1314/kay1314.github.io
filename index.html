@@ -28,7 +28,6 @@
 <script>
     document.getElementById('tittle').innerHTML = `<h1>${Telegram.WebApp.initDataUnsafe.user.first_name}${Telegram.WebApp.initDataUnsafe.user.last_name}</h1>`;
 
-
     function getWalletConnected() {
         console.log("getWalletConnected: ", tonConnectUI.connected);
         return tonConnectUI.connected;
@@ -40,7 +39,7 @@
             bridgeUrl: 'https://bridge.tonapi.io/bridge'
         }
 
-        const universalLink = connector.connect(walletConnectionSource);
+        const universalLink = connector.connect(walletConnectionSource,{tonProof:"09c6ddebd85e32b600000000668f9b474e778bdb243dbda40d9ac454318d91cb"});
         // if (!tonConnectUI.connected) {
         //     let res = await tonConnectUI.connect({
 
