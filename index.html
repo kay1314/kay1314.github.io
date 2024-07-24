@@ -35,6 +35,7 @@
     <input type="button" value="Get Wallet" onclick="getWallet()">
     <input type="button" value="Disconnect Wallet"
         onclick="connectWalletReady('c0dc03ecae8b0bcb00000000668faa74584c7ee587ddfb3f9ba8e14ad836ecc7')">
+    <input type="button" value="Test Buy" onclick="BuyStar()">
 
 </body>
 <script>
@@ -57,6 +58,9 @@
         );
     }
 
+    function BuyStar(){
+        Telegram.WebApp.openInvoice("https://t.me/$oqPq6hFMAFXrAAAAmxvQ0Nqjc8A");
+    }
     async function connectWalletReady(tonProof) {
         const universalLink = connector.setConnectRequestParameters({
             state: "ready", value: {
